@@ -23,15 +23,15 @@ class D4Tasks(rawRanges: List<String>) {
         }
     }
 
-    fun calculateAssignmentsWithCompleteOverlap(): Int = assigmentPairs.count { it.hasCompleteOverlap() }
-    fun calculateAssignmentsWithPartialOverlap():Int = assigmentPairs.count { it.hasPartialOverlap() }
+    fun noOfCompleteOverlap(): Int = assigmentPairs.count { it.hasCompleteOverlap() }
+    fun noOfPartialOverlap():Int = assigmentPairs.count { it.hasPartialOverlap() }
 }
 
 fun main() {
     val d4Tasks = D4Tasks(FileHandler.getLinesFromFile("day4.txt"))
     //Task A
-    d4Tasks.calculateAssignmentsWithCompleteOverlap().also { println(it) }
+    d4Tasks.noOfCompleteOverlap().also { println(it) }
     //Task B
-    d4Tasks.calculateAssignmentsWithPartialOverlap().also { println(it) }
+    d4Tasks.noOfPartialOverlap().also { println(it) }
 
 }
