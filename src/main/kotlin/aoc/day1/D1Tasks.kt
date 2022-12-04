@@ -2,7 +2,7 @@ package aoc.day1
 
 import util.FileHandler
 
-class CalorieCounter {
+class D1Task {
 
     fun findTopElves(noOfTopElves: Int): String {
         val calorieHighScore = CalorieHighScore(noOfTopElves)
@@ -13,7 +13,7 @@ class CalorieCounter {
             currentElfTotal = 0
         }
 
-        for (line in FileHandler.getLinesFromFile("day1a.txt")) {
+        for (line in FileHandler.getLinesFromFile("day1.txt")) {
             if (line.isBlank()) {
                 calcAndReset()
                 continue
@@ -52,7 +52,7 @@ class CalorieHighScore(val size: Int) {
 
 fun main() {
     //Task A
-    CalorieCounter().findTopElves(1).also { println(it) }
+    D1Task().findTopElves(1).also { println(it) }
     //Task B
-    CalorieCounter().findTopElves(3).also { println(it) }
+    D1Task().findTopElves(3).also { println(it) }
 }
