@@ -6,9 +6,7 @@ class D6Tasks(private val line: String) {
     fun findNoOfDistinctCharactersFromStart(noOfChars: Int): Int {
         val mostRecent = ArrayDeque<Char>()
 
-        repeat(noOfChars) {
-            mostRecent.add(line[it])
-        }
+        repeat(noOfChars) { mostRecent.add(line[it]) }
 
         fun allUnique() = mostRecent.toSet().size == noOfChars
 
