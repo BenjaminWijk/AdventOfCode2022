@@ -10,8 +10,8 @@ class D2Task(val moves: List<String>) {
         var totalScore = 0
 
         for (move in moves) {
-            val initiatorMove = RpsMove.matching { move[0] == initChar }
-            val responseMove = RpsMove.matching { move[2] == responseChar }
+            val initiatorMove = RpsMove.values().first { move[0] == it.initChar }
+            val responseMove = RpsMove.values().first { move[2] == it.responseChar }
 
             totalScore += calculateRoundPoints(initiatorMove, responseMove)
         }
@@ -23,7 +23,7 @@ class D2Task(val moves: List<String>) {
         var totalScore = 0
 
         for (move in moves) {
-            val initiatorMove = RpsMove.matching { move[0] == initChar }
+            val initiatorMove = RpsMove.values().first { move[0] == it.initChar }
 
             val intendedMatchOutcome = IntendedMatchOutcome.values().first { it.char == move[2] }
             val responseMove = when (intendedMatchOutcome) {
@@ -55,6 +55,9 @@ class D2Task(val moves: List<String>) {
 fun main() {
     val moves = FileHandler.getLinesFromFile("day2.txt")
     val d2Task = D2Task(moves)
+
+    //Answer: 13005
     d2Task.task1Score().also { println(it) }
+    //Answer: 11373
     d2Task.task2Score().also { println(it) }
 }

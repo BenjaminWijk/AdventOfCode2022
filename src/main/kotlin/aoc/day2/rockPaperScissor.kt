@@ -15,14 +15,6 @@ enum class RpsMove(val initChar:Char, val responseChar: Char, val bonusPoint: In
         PAPER -> ROCK
         SCISSOR -> PAPER
     }
-
-    companion object {
-        val values = values()
-
-        fun matching(pred: RpsMove.() -> Boolean): RpsMove {
-            return values.first(pred)
-        }
-    }
 }
 
 
