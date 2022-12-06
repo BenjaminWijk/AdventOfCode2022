@@ -46,9 +46,9 @@ class D3Tasks(itemInfo: List<String>) {
 
 fun main() {
     val d3Task = D3Tasks(FileHandler.getLinesFromFile("day3.txt"))
-    //Task A
+    //Task A, answer: 8139
     println(d3Task.sumOfPrio())
-    //Task B
+    //Task B, answer: 2668
     println(d3Task.sumOfBadgePrio())
 
 }

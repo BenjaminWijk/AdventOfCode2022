@@ -24,8 +24,8 @@ class D6Tasks(private val line: String) {
 fun main() {
     val d6Tasks = D6Tasks(FileHandler.getLinesFromFile("day6.txt")[0])
 
-    //Task A
+    //Task A, answer: 1262
     d6Tasks.findNoOfDistinctCharactersFromStart(4).also { println(it) }
-    //Task B
+    //Task B, answer: 3444
     d6Tasks.findNoOfDistinctCharactersFromStart(14).also { println(it) }
 }

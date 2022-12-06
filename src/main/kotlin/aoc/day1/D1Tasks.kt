@@ -51,8 +51,8 @@ class CalorieHighScore(val size: Int) {
 
 
 fun main() {
-    //Task A
+    //Task A, answer: 67633
     D1Task().findTopElves(1).also { println(it) }
-    //Task B
+    //Task B, answer: 199628
     D1Task().findTopElves(3).also { println(it) }
 }

@@ -29,9 +29,9 @@ class D4Tasks(rawRanges: List<String>) {
 
 fun main() {
     val d4Tasks = D4Tasks(FileHandler.getLinesFromFile("day4.txt"))
-    //Task A
+    //Task A, answer: 538
     d4Tasks.noOfCompleteOverlap().also { println(it) }
-    //Task B
+    //Task B, answer: 792
     d4Tasks.noOfPartialOverlap().also { println(it) }
 
 }

@@ -44,9 +44,9 @@ fun main() {
     val instructions = d5InputParser.parseMoveInstructions()
 
     //recreate stack each time, since I'm modifying the stack
-    //Task A
+    //Task A, answer: FZCMJCRHZ
     D5Task(d5InputParser.originalStackList(), instructions).moveCrates9000().also { println(it) }
-    //Task B
+    //Task B, answer: JSDHQMZGF
     D5Task(d5InputParser.originalStackList(), instructions).moveCrates9001().also { println(it) }
 
 
