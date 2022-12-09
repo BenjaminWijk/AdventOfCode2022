@@ -1,15 +1,21 @@
 package main.kotlin.aoc.day8
 
-import main.kotlin.util.printResult
+import main.kotlin.util.printIt
 import util.FileHandler
 
 
 fun main(){
     val forest = Forest(FileHandler.getLinesFromFile("day8.txt"))
 
-    forest.noOfVisibleTrees().printResult()
+    //Task A, answer: 1776
+    forest.noOfVisibleTrees().printIt()
+    //Task B, answer: 234416
+    forest.findHighestViewScore().printIt()
 
     val sampleForest = Forest(FileHandler.getLinesFromFile("day8Sample.txt"))
-    sampleForest.noOfVisibleTrees().printResult()
+    //21
+    sampleForest.noOfVisibleTrees()
+    //8
+    sampleForest.findHighestViewScore()
 
 }

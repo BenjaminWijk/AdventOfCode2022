@@ -18,6 +18,17 @@ class Forest(val input: List<String>) {
 
     fun noOfVisibleTrees(): Int = trees.values.count { it.visible }
 
+    fun findHighestViewScore(): Int {
+        var highest = 0
+
+        trees.values.forEach{
+            val score = it.calculateViewScore()
+            if(score > highest) highest = score
+        }
+
+        return highest
+    }
+
     private fun populateAndConnect() {
         //Tree with height creation
         Grid.processGrid(ySize, xSize) { y, x ->
@@ -75,7 +86,29 @@ class Forest(val input: List<String>) {
         var bottom: Tree? = null
     ) {
         var visible = false
-        
+
+        fun getDirectionalScore(nextInDirection: Tree.() -> Tree?): Int{
+            var tree = nextInDirection()
+
+            var score = 0
+            while(tree != null){
+                score++
+
+                if(tree.height >= height) break
+                tree = nextInDirection(tree)
+            }
+            return score
+        }
+
+        fun calculateViewScore(): Int{
+            val left = getDirectionalScore { left }
+            val top = getDirectionalScore { top }
+            val right = getDirectionalScore { right }
+            val bottom = getDirectionalScore { bottom }
+
+            return left * top * right * bottom
+        }
+
     }
 }
 
