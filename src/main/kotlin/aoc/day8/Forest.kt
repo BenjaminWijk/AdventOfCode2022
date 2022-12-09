@@ -15,7 +15,6 @@ class Forest(val input: List<String>) {
         populateAndConnect()
         calculateTreeVisibility()
     }
-
     fun noOfVisibleTrees(): Int = trees.values.count { it.visible }
 
     fun findHighestViewScore(): Int {
@@ -87,7 +86,7 @@ class Forest(val input: List<String>) {
     ) {
         var visible = false
 
-        fun getDirectionalScore(nextInDirection: Tree.() -> Tree?): Int{
+        private fun getDirectionalScore(nextInDirection: Tree.() -> Tree?): Int{
             var tree = nextInDirection()
 
             var score = 0

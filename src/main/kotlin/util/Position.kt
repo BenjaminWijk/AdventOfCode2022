@@ -1,6 +1,8 @@
 package main.kotlin.util
 
+//This one ain't efficient at all most likely, but I'm ok with it. :))))))
 class Position private constructor(val y: Int, val x: Int) {
+
     companion object {
         private val map = mutableMapOf<String, Position>()
 

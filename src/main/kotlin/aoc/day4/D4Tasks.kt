@@ -1,5 +1,6 @@
 package aoc.day4
 
+import main.kotlin.util.printIt
 import util.FileHandler
 
 class D4Tasks(rawRanges: List<String>) {
@@ -30,8 +31,8 @@ class D4Tasks(rawRanges: List<String>) {
 fun main() {
     val d4Tasks = D4Tasks(FileHandler.getLinesFromFile("day4.txt"))
     //Task A, answer: 538
-    d4Tasks.noOfCompleteOverlap().also { println(it) }
+    d4Tasks.noOfCompleteOverlap().printIt()
     //Task B, answer: 792
-    d4Tasks.noOfPartialOverlap().also { println(it) }
+    d4Tasks.noOfPartialOverlap().printIt()
 
 }

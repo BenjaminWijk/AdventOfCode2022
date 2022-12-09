@@ -1,5 +1,6 @@
 package aoc.day1
 
+import main.kotlin.util.printIt
 import util.FileHandler
 
 class D1Task {
@@ -52,7 +53,7 @@ class CalorieHighScore(val size: Int) {
 
 fun main() {
     //Task A, answer: 67633
-    D1Task().findTopElves(1).also { println(it) }
+    D1Task().findTopElves(1).printIt()
     //Task B, answer: 199628
-    D1Task().findTopElves(3).also { println(it) }
+    D1Task().findTopElves(3).printIt()
 }

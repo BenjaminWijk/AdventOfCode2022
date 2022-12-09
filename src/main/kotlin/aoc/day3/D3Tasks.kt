@@ -1,5 +1,6 @@
 package aoc.day3
 
+import main.kotlin.util.printIt
 import util.FileHandler
 import java.lang.Exception
 
@@ -47,8 +48,8 @@ class D3Tasks(itemInfo: List<String>) {
 fun main() {
     val d3Task = D3Tasks(FileHandler.getLinesFromFile("day3.txt"))
     //Task A, answer: 8139
-    println(d3Task.sumOfPrio())
+    d3Task.sumOfPrio().printIt()
     //Task B, answer: 2668
-    println(d3Task.sumOfBadgePrio())
+    d3Task.sumOfBadgePrio().printIt()
 
 }
