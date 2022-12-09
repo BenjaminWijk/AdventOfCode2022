@@ -1,4 +1,4 @@
-package main.kotlin.aoc.day5
+package aoc.day5
 
 import java.util.Stack
 

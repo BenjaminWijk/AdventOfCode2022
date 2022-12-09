@@ -1,6 +1,6 @@
 package aoc.day3
 
-import main.kotlin.util.printIt
+import util.printIt
 import util.FileHandler
 import java.lang.Exception
 

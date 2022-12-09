@@ -1,7 +1,7 @@
-package main.kotlin.aoc.day9
+package aoc.day9
 
-import main.kotlin.aoc.day9.Direction.*
-import main.kotlin.util.Position
+import aoc.day9.Direction.*
+import util.Position
 import kotlin.math.abs
 
 enum class Direction(val char: Char) {

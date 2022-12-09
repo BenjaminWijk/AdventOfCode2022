@@ -1,7 +1,7 @@
-package main.kotlin.aoc.day8
+package aoc.day8
 
-import main.kotlin.util.Grid
-import main.kotlin.util.Position
+import util.Grid
+import util.Position
 
 //Assuming input is always a perfect rectangle
 class Forest(val input: List<String>) {

@@ -1,4 +1,4 @@
-package main.kotlin.util
+package util
 
 object Grid {
     fun processGrid(ySize: Int, xSize: Int, block: (y: Int, x: Int) -> Unit) {

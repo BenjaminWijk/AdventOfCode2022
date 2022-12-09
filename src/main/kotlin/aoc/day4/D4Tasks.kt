@@ -1,6 +1,6 @@
 package aoc.day4
 
-import main.kotlin.util.printIt
+import util.printIt
 import util.FileHandler
 
 class D4Tasks(rawRanges: List<String>) {

@@ -1,6 +1,6 @@
-package main.kotlin.aoc.day6
+package aoc.day6
 
-import main.kotlin.util.printIt
+import util.printIt
 import util.FileHandler
 
 class D6Tasks(private val line: String) {

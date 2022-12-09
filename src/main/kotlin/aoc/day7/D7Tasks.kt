@@ -1,7 +1,7 @@
 package aoc.day7
 
+import util.printIt
 import util.FileHandler
-import kotlin.math.max
 
 class D7Tasks(val input: List<String>) {
 
@@ -41,9 +41,9 @@ fun main() {
 
     val d7Tasks = D7Tasks(FileHandler.getLinesFromFile("day7.txt"))
     //Task A, answer: 1644735
-    d7Tasks.calcSumSizeOfSmallFolders().also { println(it) }
+    d7Tasks.calcSumSizeOfSmallFolders().printIt()
 
     //Task B, answer: 1300850
-    d7Tasks.findSmallestRequiredFolderToDelete().also { println(it) }
+    d7Tasks.findSmallestRequiredFolderToDelete().printIt()
 
 }

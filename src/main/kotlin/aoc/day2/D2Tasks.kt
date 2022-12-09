@@ -1,7 +1,7 @@
 package aoc.day2
 
 import aoc.day2.IntendedMatchOutcome.*
-import main.kotlin.util.printIt
+import util.printIt
 
 import util.FileHandler
 

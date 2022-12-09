@@ -1,6 +1,6 @@
-package main.kotlin.aoc.day8
+package aoc.day8
 
-import main.kotlin.util.printIt
+import util.printIt
 import util.FileHandler
 
 
