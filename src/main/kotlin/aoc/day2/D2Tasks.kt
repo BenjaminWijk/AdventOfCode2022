@@ -1,6 +1,7 @@
 package aoc.day2
 
 import aoc.day2.IntendedMatchOutcome.*
+import main.kotlin.util.printIt
 
 import util.FileHandler
 
@@ -57,7 +58,7 @@ fun main() {
     val d2Task = D2Task(moves)
 
     //Answer: 13005
-    d2Task.task1Score().also { println(it) }
+    d2Task.task1Score().printIt()
     //Answer: 11373
-    d2Task.task2Score().also { println(it) }
+    d2Task.task2Score().printIt()
 }

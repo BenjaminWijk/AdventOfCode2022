@@ -1,5 +1,6 @@
 package main.kotlin.aoc.day5
 
+import main.kotlin.util.printIt
 import util.FileHandler
 import java.util.*
 
@@ -45,9 +46,9 @@ fun main() {
 
     //recreate stack each time, since I'm modifying the stack
     //Task A, answer: FZCMJCRHZ
-    D5Task(d5InputParser.originalStackList(), instructions).moveCrates9000().also { println(it) }
+    D5Task(d5InputParser.originalStackList(), instructions).moveCrates9000().printIt()
     //Task B, answer: JSDHQMZGF
-    D5Task(d5InputParser.originalStackList(), instructions).moveCrates9001().also { println(it) }
+    D5Task(d5InputParser.originalStackList(), instructions).moveCrates9001().printIt()
 
 
 }
