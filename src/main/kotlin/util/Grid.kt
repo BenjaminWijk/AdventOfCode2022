@@ -1,10 +1,10 @@
 package util
 
 object Grid {
-    fun processGrid(ySize: Int, xSize: Int, block: (y: Int, x: Int) -> Unit) {
+    fun processGrid(yMax: Int, xMax: Int, yMin: Int = 0, xMin: Int = 0, block: (y: Int, x: Int) -> Unit) {
 
-        for (y in 0 until ySize) {
-            for (x in 0 until xSize) {
+        for (y in yMin until yMax) {
+            for (x in xMin until xMax) {
                 block(y, x)
             }
         }

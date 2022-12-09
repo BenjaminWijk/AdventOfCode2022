@@ -10,27 +10,28 @@ enum class Direction(val char: Char) {
     LEFT('L'),
     RIGHT('R');
 
-    companion object{
+    companion object {
         private val charToEnum = values().associateBy { it.char }
         fun of(char: Char) = charToEnum[char]!!
 
     }
 }
 
-class Rope(val length: Int) {
-    val ropePositions = Array<Position>(length){ Position.of(0,0)}
+class Rope(val length: Int, val visualiser: RopeVisualiser? = null) {
+    val ropePositions = Array(length) { Position.of(0, 0) }
 
     var headPos
         get() = ropePositions[0]
-        set(value) { ropePositions[0] = value}
+        set(value) {
+            ropePositions[0] = value
+        }
 
-    private val _tailTrail = mutableSetOf(headPos)
-    val tailTrail: Set<Position>
-        get() = _tailTrail
+    val tailTrail = mutableSetOf(headPos)
 
     fun moveHead(direction: Direction, times: Int) {
+        visualiser?.visualiseCurrentRopeState(ropePositions, direction, times)
+
         repeat(times) {
-            val oldPositions = ropePositions.copyOf()
             val (oldY, oldX) = headPos.y to headPos.x
             val (newY, newX) = when (direction) {
                 UP -> oldY - 1 to oldX
@@ -41,28 +42,48 @@ class Rope(val length: Int) {
 
             headPos = Position.of(newY, newX)
 
-            for(i in 1 until length) {
-                updateNextLink(i, oldPositions)
+            for (i in 1 until length) {
+                val updateCancelled = updateLink(i)
+                //Link still touching previous value? Rest is unchanged and we can perform next move
+                if (updateCancelled) break
             }
         }
     }
 
-    private fun updateNextLink(idx: Int, previousPositions: Array<Position>) {
-        val nextLink = ropePositions[idx]
-        val prevLink = ropePositions[idx-1]
+    /**
+     * @return - if update was cancelled (true == cancelled)
+     */
+    private fun updateLink(idx: Int): Boolean {
+        val link = ropePositions[idx]
+        val linkAhead = ropePositions[idx - 1]
 
-        fun stillTouchingHead(): Boolean {
-            return abs(prevLink.x - nextLink.x) <= 1 && abs(prevLink.y - nextLink.y) <= 1
+        fun stillTouching(): Boolean {
+            return abs(linkAhead.x - link.x) <= 1 && abs(linkAhead.y - link.y) <= 1
         }
 
-        if (stillTouchingHead()) return
+        //Still in contact, no need to do anything else
+        if (stillTouching()) return true
 
-        ropePositions[idx] = previousPositions[idx-1]
+        var newX = link.x
+        var newY = link.y
 
-        //keep track of tail
-        if(idx == length -1){
-            _tailTrail.add(ropePositions[idx])
+        //Adjust row if needed
+        if (link.y != linkAhead.y) {
+            if (link.y > linkAhead.y) newY-- else newY++
         }
+        //Adjust column if needed
+        if (link.x != linkAhead.x) {
+            if (link.x > linkAhead.x) newX-- else newX++
+        }
+
+        ropePositions[idx] = Position.of(newY, newX)
+
+        //Keep track of tail
+        if (idx == length - 1) {
+            tailTrail.add(ropePositions[idx])
+        }
+
+        return false
     }
 
 }
