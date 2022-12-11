@@ -48,7 +48,7 @@ class D10Tasks(val inputs: List<String>) {
     }
 
     class CrtMonitor(val height: Int, val width: Int) {
-        val grid = Grid.createGrid(height, width) { '.' }
+        val grid = Grid.createGrid(height, width) { ' ' }
 
         fun updatePixelFromCycle(pixel: Int, register: Int) {
             val row = pixel / width
@@ -60,9 +60,6 @@ class D10Tasks(val inputs: List<String>) {
         }
 
         fun printMonitor(){
-            println()
-            println()
-
             Grid.processGrid(height, width){ row, col ->
                 if(col == 0) println()
                 print(grid[row][col])
