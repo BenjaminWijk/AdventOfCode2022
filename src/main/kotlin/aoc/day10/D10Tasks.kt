@@ -70,6 +70,7 @@ class D10Tasks(val inputs: List<String>) {
 }
 
 //Not too happy about this one, code smells a lot.
+//Breaking out individual task functionality is ugly, because they are doing stuff after/before cycle updates..
 fun main() {
     val input = FileHandler.getLinesFromFile("day10.txt")
 
