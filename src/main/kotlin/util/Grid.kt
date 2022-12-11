@@ -9,4 +9,9 @@ object Grid {
             }
         }
     }
+
+    inline fun <reified T> createGrid(yMax: Int, xMax: Int, initValue: () -> T): Array<Array<T>> =
+        Array(yMax) { Array(xMax) { initValue() } }
+
+
 }
