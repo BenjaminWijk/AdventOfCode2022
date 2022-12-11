@@ -55,7 +55,7 @@ class D10Tasks(val inputs: List<String>) {
             val col = pixel % width
 
             if ((register - 1..register + 1).contains(col)){
-                grid[row][col] = '#'
+                grid[row][col] = '|'
             }
         }
 
