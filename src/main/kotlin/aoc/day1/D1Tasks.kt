@@ -1,16 +1,17 @@
 package aoc.day1
 
+import main.kotlin.util.HighestValueStore
 import util.printIt
 import util.FileHandler
 
 class D1Task {
 
     fun findTopElves(noOfTopElves: Int): String {
-        val calorieHighScore = CalorieHighScore(noOfTopElves)
+        val highestValueStore = HighestValueStore(noOfTopElves)
 
-        var currentElfTotal = 0
+        var currentElfTotal = 0L
         fun calcAndReset() {
-            calorieHighScore.put(currentElfTotal)
+            highestValueStore.put(currentElfTotal)
             currentElfTotal = 0
         }
 
@@ -23,32 +24,12 @@ class D1Task {
         }
         calcAndReset() //in case last line is not blank
 
-        return calorieHighScore.values.sum().toString()
+        return highestValueStore.values.sum().toString()
     }
 
 }
 
-class CalorieHighScore(val size: Int) {
 
-    val values = IntArray(size) { 0 }
-
-    fun getLowestIndex(): Int {
-        var lowestIndex = 0
-
-        //we start off at 0 index, no need to compare with self
-        for (i in 1 until size) {
-            if (values[lowestIndex] > values[i])
-                lowestIndex = i
-        }
-        return lowestIndex
-    }
-
-    fun put(newValue: Int) = getLowestIndex().let { lowest ->
-        if (newValue > values[lowest])
-            values[lowest] = newValue
-    }
-
-}
 
 
 fun main() {
