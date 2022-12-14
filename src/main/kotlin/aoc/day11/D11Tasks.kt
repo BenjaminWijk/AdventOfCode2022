@@ -8,7 +8,6 @@ class D11Tasks(input: List<String>) {
 
     val monkeyParser = MonkeyParser(input)
 
-
     fun calcTopMonkeyBusinessAfterRounds(rounds:Int, worryLevelDecreases: Boolean): Long{
         val monkeys = monkeyParser.synthesizeMonkeys()
 
@@ -42,6 +41,6 @@ fun main(){
     //Sample, answer: 10605
     d11SampleTasks.calcTopMonkeyBusinessAfterRounds(20, true).printIt()
     //Sample, answer:
-    d11SampleTasks.calcTopMonkeyBusinessAfterRounds(10000, false).printIt()
+ //  d11SampleTasks.calcTopMonkeyBusinessAfterRounds(10000, false).printIt()
 
 }

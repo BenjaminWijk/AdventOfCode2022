@@ -2,16 +2,19 @@ package main.kotlin.aoc.day11
 
 import main.kotlin.aoc.day11.Monkey.Operation.Operand.ADD
 import main.kotlin.aoc.day11.Monkey.Operation.Operand.MULTIPLY
+import main.kotlin.aoc.day11.MonkeyParser.Regexes.monkeyPos
 import main.kotlin.aoc.day11.MonkeyParser.Regexes.startingItems
 import main.kotlin.aoc.day11.MonkeyParser.Regexes.throwToOnFalse
 import main.kotlin.aoc.day11.MonkeyParser.Regexes.throwToOnTrue
 import main.kotlin.util.group
 import main.kotlin.util.groups
+import util.matching
 import java.math.BigInteger
 
 class MonkeyParser(val lines: List<String>) {
 
     object Regexes {
+        val monkeyPos = "Monkey (\\d)+:".toRegex()
         val startingItems = ".*Starting items:.*".toRegex()
         val test = "Test: divisible by (\\d+)".toRegex()
         val operation = "Operation: new = (\\S+) (.) (\\S+)".toRegex()
@@ -33,14 +36,19 @@ class MonkeyParser(val lines: List<String>) {
 
         lines.forEach { line ->
 
+            //Pos not really not necessary, I just want to cover each line.
+            monkeyPos.find(line)?.groups?.get(1)?.value?.toInt()?.let {
+                check(it == list.size) {"found monkey number $it, but last mapped monkey was ${list.size-1}"}
+            }
+
             if (line.matches(startingItems)) {
                 val itemString = line.split("items: ")[1]
                 items = itemString.split(",").map { it.trim().toBigInteger() } as MutableList<BigInteger>
             }
 
             Regexes.operation.groups(line, 1, 2, 3)?.let { groups ->
-                val operand = groups[1].let {
-                    if (it == "*") MULTIPLY else ADD
+                val operand = groups[1].let { grp ->
+                    Monkey.Operation.Operand::class.matching { grp[0] == it.char }
                 }
 
                 fun getOperandNumber(str: String): Monkey.Operation.OperationNumber {
@@ -55,7 +63,7 @@ class MonkeyParser(val lines: List<String>) {
             }
 
             Regexes.test.groupToInt(line, 1)?.let {
-                test = { bigBoi -> bigBoi.divideAndRemainder(it.toBigInteger())[1].equals(BigInteger.ZERO) }
+                test = { bigBoi -> bigBoi.divideAndRemainder(it.toBigInteger())[1] == BigInteger.ZERO }
             }
 
             throwToOnTrue.groupToInt(line, 1)?.let { throwOnTrue = it }

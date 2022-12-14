@@ -4,39 +4,31 @@ import aoc.day2.IntendedMatchOutcome.*
 import util.printIt
 
 import util.FileHandler
+import util.matching
 
 class D2Task(val moves: List<String>) {
 
     fun task1Score(): Int {
-        var totalScore = 0
+        return moves.sumOf { move ->
+            val initiatorMove = RpsMove::class.matching { move[0] == it.initChar }
+            val responseMove = RpsMove::class.matching { move[2] == it.responseChar }
 
-        for (move in moves) {
-            val initiatorMove = RpsMove.values().first { move[0] == it.initChar }
-            val responseMove = RpsMove.values().first { move[2] == it.responseChar }
-
-            totalScore += calculateRoundPoints(initiatorMove, responseMove)
+            calculateRoundPoints(initiatorMove, responseMove)
         }
-
-        return totalScore
     }
 
     fun task2Score(): Int {
-        var totalScore = 0
+       return moves.sumOf { move ->
+            val initiatorMove = RpsMove::class.matching { move[0] == it.initChar }
 
-        for (move in moves) {
-            val initiatorMove = RpsMove.values().first { move[0] == it.initChar }
-
-            val intendedMatchOutcome = IntendedMatchOutcome.values().first { it.char == move[2] }
-            val responseMove = when (intendedMatchOutcome) {
+            val responseMove = when (IntendedMatchOutcome::class.matching { it.char == move[2] }) {
                 LOSE -> initiatorMove.winsAgainst()
                 DRAW -> initiatorMove
                 WIN -> initiatorMove.losesAgainst()
             }
 
-            totalScore += calculateRoundPoints(initiatorMove, responseMove)
+            calculateRoundPoints(initiatorMove, responseMove)
         }
-
-        return totalScore
     }
 
     private fun calculateRoundPoints(initiatorMove: RpsMove, responseMove: RpsMove): Int {
