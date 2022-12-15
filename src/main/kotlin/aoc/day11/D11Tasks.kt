@@ -17,6 +17,7 @@ class D11Tasks(input: List<String>) {
                     it.inspectAndToss(monkeys, worryLevelDecreases)
                 }
             }
+
         }
 
         val highestMonkeyBusiness = HighestValueStore(2)
@@ -33,14 +34,14 @@ class D11Tasks(input: List<String>) {
 fun main(){
     val d11Tasks = D11Tasks(FileHandler.getLinesFromFile("day11.txt"))
     //Task A, answer: 66124
-    //d11Tasks.calcTopMonkeyBusinessAfterRounds(20, true).printIt()
+    d11Tasks.calcTopMonkeyBusinessAfterRounds(20, true).printIt()
     //Task B, answer: TBD. Technically correct solution, it just has to run for "some" time...... :D
     //d11Tasks.calcTopMonkeyBusinessAfterRounds(10000, false).printIt()
 
     val d11SampleTasks = D11Tasks(FileHandler.getLinesFromFile("day11Sample.txt"))
     //Sample, answer: 10605
-    d11SampleTasks.calcTopMonkeyBusinessAfterRounds(20, true).printIt()
+    //d11SampleTasks.calcTopMonkeyBusinessAfterRounds(20, true).printIt()
     //Sample, answer:
- //  d11SampleTasks.calcTopMonkeyBusinessAfterRounds(10000, false).printIt()
+    //d11SampleTasks.calcTopMonkeyBusinessAfterRounds(10000, false).printIt()
 
 }

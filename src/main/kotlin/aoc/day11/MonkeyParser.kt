@@ -27,7 +27,7 @@ class MonkeyParser(val lines: List<String>) {
 
         var items: MutableList<BigInteger> = mutableListOf()
         var operation: Monkey.Operation? = null
-        var test: (BigInteger) -> Boolean = { false }
+        var test: Monkey.(BigInteger) -> Boolean = { _ -> false }
         var throwOnTrue = -1
 
         fun Regex.groupToInt(input: String, groupNo: Int) = group(input, groupNo)?.toInt()
@@ -35,7 +35,7 @@ class MonkeyParser(val lines: List<String>) {
         lines.forEach { line ->
             //Pos not really not necessary, I just want to cover each non-blank line.
             monkeyPos.find(line)?.groups?.get(1)?.value?.toInt()?.let {
-                check(it == list.size) {"found monkey number $it, but last mapped monkey was ${list.size-1}"}
+                check(it == list.size) { "found monkey number $it, but last mapped monkey was ${list.size - 1}" }
             }
 
             if (line.matches(startingItems)) {
@@ -59,13 +59,12 @@ class MonkeyParser(val lines: List<String>) {
 
             Regexes.test.groupToInt(line, 1)?.let {
                 test = { bigBoi ->
-
                     bigBoi.remainder(it.toBigInteger()) == BigInteger.ZERO
                 }
             }
 
             throwToOnTrue.groupToInt(line, 1)?.let { throwOnTrue = it }
-            throwToOnFalse.groupToInt(line, 1)?.let {throwOnFalse ->
+            throwToOnFalse.groupToInt(line, 1)?.let { throwOnFalse ->
                 //all info gathered, build monkey
                 list.add(
                     Monkey(items, operation!!, test, throwOnTrue, throwOnFalse)

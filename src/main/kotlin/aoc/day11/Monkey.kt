@@ -4,8 +4,8 @@ import java.math.BigInteger
 
 class Monkey(
     private val items: MutableList<BigInteger>,
-    private val operation: Operation,
-    private val test: (BigInteger) -> Boolean,
+    val operation: Operation,
+    val test: Monkey.(BigInteger) -> Boolean,
     private val throwToWhenTrue: Int,
     private val throwToWhenFalse: Int
 ) {
